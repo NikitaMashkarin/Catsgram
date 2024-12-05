@@ -1,9 +1,13 @@
 package ru.yandex.practicum.catsgram.model;
 
 import java.time.Instant;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@EqualsAndHashCode(of = {"id"})
 public class Post {
     private Long id;
     private long authorId;
