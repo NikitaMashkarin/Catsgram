@@ -71,9 +71,7 @@ public class UserService {
     }
 
     public Optional<User> findUserById(long id){
-        for (User user: users.values()){
-            if(user.getId() == id) return Optional.of(user);
-        }
+        if(users.containsKey(id)) return Optional.of(users.get(id));
         return Optional.empty();
     }
 
