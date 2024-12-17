@@ -88,7 +88,7 @@ public class PostService {
         throw new NotFoundException("Пост с id = " + newPost.getId() + " не найден");
     }
 
-    public Optional<Post> findPostBId(long id){
+    public Optional<Post> findById(long id){
         if(posts.containsKey(id)) return Optional.of(posts.get(id));
         return Optional.empty();
     }

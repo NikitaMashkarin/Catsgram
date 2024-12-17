@@ -20,7 +20,7 @@ public class PostController {
 
     @GetMapping("/posts/{postId}")
     public Post findById(@PathVariable long postId){
-        Optional<Post> post = postService.findPostBId(postId);
+        Optional<Post> post = postService.findById(postId);
         if(post.isPresent()) return post.get();
         throw new ConditionsNotMetException("Пост с id = " + postId + " не найден");
     }
