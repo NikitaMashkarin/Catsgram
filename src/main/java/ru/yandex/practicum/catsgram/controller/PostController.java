@@ -1,5 +1,6 @@
 package ru.yandex.practicum.catsgram.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.catsgram.exception.ConditionsNotMetException;
 import ru.yandex.practicum.catsgram.model.Post;
@@ -25,11 +26,18 @@ public class PostController {
     }
 
     @GetMapping
-    public Collection<Post> findAll() {
-        return postService.findAll();
+    public Collection<Post> findAll(@RequestParam(defaultValue = "null") String asc,
+                                    @RequestParam(defaultValue = "null") String from,
+                                    @RequestParam(defaultValue = "null") String size) {
+        if(asc.equals("null") || from.equals("null") || size.equals("null")) {
+            return postService.findAll();
+        } else {
+            return postService.findAll(Integer.parseInt(size), asc, Integer.parseInt(from));
+        }
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Post create(@RequestBody Post post) {
         return postService.create(post);
     }
